@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ThaiVinhLoc_Lab456.Models;
-
+using System.Data.Entity;
 namespace ThaiVinhLoc_Lab456.Controllers
 {
     public class HomeController : Controller
