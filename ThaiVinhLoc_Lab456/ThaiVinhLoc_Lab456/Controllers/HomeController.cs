@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ThaiVinhLoc_Lab456.Models;
 
 namespace ThaiVinhLoc_Lab456.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext _dbContext;
+        public HomeController()
+        {
+            _dbContext = new ApplicationDbContext();
+        }
         public ActionResult Index()
         {
-            return View();
+            var upcommingCourses = _dbContext.Courses
+                .Include(c => c.Lecturer)
+                .Include(c => c.Category)
+                .Where(c => c.DateTime > DateTime.Now);
+            return View(upcommingCourses);
         }
 
         public ActionResult About()
